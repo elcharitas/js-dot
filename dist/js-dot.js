@@ -1,11 +1,27 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.set = void 0;
+exports.set = exports.get = exports.loop = void 0;
 var utils_1 = require("./utils");
 var loop_1 = require("./loop");
+exports.loop = loop_1.dotloop;
+/**
+ * Auto Dot notation resolve function
+ *
+ */
+exports.get = function (context, key, default_value) {
+    if (default_value === void 0) { default_value = null; }
+    if (context && key && (typeof key === "string" || typeof key === "number")) {
+        var couple = (new String(key)).split(utils_1.dot), holder = Object.create(context), lastName = couple.pop();
+        for (var _i = 0, couple_1 = couple; _i < couple_1.length; _i++) {
+            var name_1 = couple_1[_i];
+            holder = holder[name_1] || {};
+        }
+        return holder[lastName] || default_value;
+    }
+};
 exports.set = utils_1.glob.set = function (context, name, value) {
-    return loop_1.loop(context, name, function (name, isLastName) {
+    return exports.loop(context, name, function (name, isLastName) {
         if (isLastName)
             return value;
     });
@@ -19,14 +35,14 @@ Object.defineProperty(Object.prototype, "dot", {
 },{"./loop":2,"./utils":3}],2:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.loop = void 0;
+exports.dotloop = void 0;
 var utils_1 = require("./utils");
 /**
  * The loop queries through the context using a path and sets appropiately
  *
  * @var () => any
  */
-exports.loop = function (context, key, callbackFn) {
+exports.dotloop = function (context, key, callbackFn) {
     if (context && key && (typeof key === "string" || typeof key === "number")) {
         var couple_1 = (new String(key)).split(utils_1.dot), scoop = couple_1.shift() || utils_1.blank, holder_1 = context[scoop] || {}, parabox = holder_1;
         if (couple_1.length === utils_1.root && couple_1.push(scoop)) {

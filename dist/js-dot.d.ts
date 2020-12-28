@@ -34,9 +34,17 @@ declare module "loop" {
      *
      * @var () => any
      */
-    export var loop: (context: typeof glob, key: string | number, callbackFn: (name: string, isLastName: boolean) => any) => any;
+    export var dotloop: (context: typeof glob, key: string | number, callbackFn: (name: string, isLastName: boolean) => any) => any;
 }
 declare module "js-dot" {
     import { glob } from "utils";
+    export var loop: (context: {
+        [x: string]: any;
+    }, key: string | number, callbackFn: (name: string, isLastName: boolean) => any) => any;
+    /**
+     * Auto Dot notation resolve function
+     *
+     */
+    export var get: (context: typeof glob, key: string | number, default_value?: any) => any;
     export var set: (context: typeof glob, name: string, value: any) => any;
 }
