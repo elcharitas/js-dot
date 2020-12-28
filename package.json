@@ -39,6 +39,6 @@
     "browserify": "^17.0.0",
     "uglify-js": "^3.11.0",
     "npm-run-all": "^4.1.0",
-    "mocha": "^"
+    "mocha": "^8.2.1"
   }
 }

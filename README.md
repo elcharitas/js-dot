@@ -22,7 +22,7 @@
 ## Install
 
 ```sh
-npm i -D js-dot
+$ npm i -D js-dot
 ```
 
 ## Usage
@@ -31,16 +31,27 @@ npm i -D js-dot
 const jsDot = require('jsdot')
 
 const data = {
-  foo: "bar"
+  foo: {
+    "bar": {
+      "sample": "jsDot"
+    }
+  }
 }
 
-jsDot.get(data, "foo") // outputs "bar"
-```
+// ======== Get Data ========
+jsDot.get(data, "foo.bar.sample") // outputs "jsDot"
+// ---- or -----
+data.dot("foo.bar.sample") // outputs "jsDot"
 
-## Run tests
+// ======== Get Data with default ========
+jsDot.get(data, "foo.nofoo", "foo") // outputs "foo"
 
-```sh
-npm run test
+// ======== Set Data ========
+jsDot.set(data, "foo.bar", "bar")
+// ----- or ------
+data.dot("foo.bar", "bar")
+console.log(data.foo.bar.sample) // undefined
+
 ```
 
 ## Author

@@ -47,5 +47,5 @@ declare module "js-dot" {
     /** dot notation set */
     export var set: (context: typeof glob, name: string, value: any) => any;
     /** dual purpose namespaced function */
-    export const jsDot: (key: string, value: any) => any;
+    export const dot: (key: string, value: any) => any;
 }

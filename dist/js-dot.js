@@ -2,7 +2,7 @@
 "use strict";
 var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.jsDot = exports.set = exports.get = exports.loop = void 0;
+exports.dot = exports.set = exports.get = exports.loop = void 0;
 var utils_1 = require("./utils");
 var loop_1 = require("./loop");
 /** dot notation loops */
@@ -27,7 +27,12 @@ exports.set = utils_1.glob.set = function (context, name, value) {
     });
 };
 /** dual purpose namespaced function */
-exports.jsDot = utils_1.glob.jsDot = function (key, value) { return typeof value !== "undefined" ? exports.set(_this, key, value) : exports.get(_this, key); };
+exports.dot = utils_1.glob.jsDot = function (key, value) { return typeof value !== "undefined" ? exports.set(_this, key, value) : exports.get(_this, key); };
+/** Extend objects with dot method */
+Object.defineProperty(Object.prototype, "dot", {
+    set: function (_v) { return null; },
+    get: function () { return exports.dot; }
+});
 
 },{"./loop":2,"./utils":3}],2:[function(require,module,exports){
 "use strict";

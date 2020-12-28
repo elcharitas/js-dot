@@ -4,6 +4,7 @@
         "module": "commonjs",
         "strict": true,
         "outDir": "../lib",
+        "noImplicitAny": false,
         "strictNullChecks": false,
         "moduleResolution": "node",
         "esModuleInterop": true,

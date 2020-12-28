@@ -1,4 +1,4 @@
-import { dot, glob } from "./utils";
+import { dot as check, glob } from "./utils";
 import { dotloop } from "./loop";
 
 /** dot notation loops */
@@ -7,7 +7,7 @@ export var loop = dotloop
 /** dot notation get */
 export var get = (context: typeof glob, key: string | number, default_value: any = null): any => {
     if (context && key && (typeof key === "string" || typeof key === "number")) {
-        let couple: string[] = (new String(key)).split(dot),
+        let couple: string[] = (new String(key)).split(check),
             holder: typeof glob = Object.create(context),
             lastName: string = couple.pop() as string;
 
@@ -27,4 +27,10 @@ export var set = glob.set = (context: typeof glob, name: string, value: any): an
 }
 
 /** dual purpose namespaced function */
-export const jsDot = glob.jsDot = (key: string, value: any) => typeof value !== "undefined" ? set(this, key, value): get(this, key)
+export const dot = glob.jsDot = (key: string, value: any) => typeof value !== "undefined" ? set(this, key, value) : get(this, key)
+
+/** Extend objects with dot method */
+Object.defineProperty(Object.prototype, "dot", {
+    set: _v => null,
+    get: () => dot
+})
