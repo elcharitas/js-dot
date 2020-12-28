@@ -1,16 +1,17 @@
 {
   "name": "js-dot",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "JavaScript dot notation handler",
   "main": "lib/js-dot.js",
   "typings": "dist/js-dot",
   "scripts": {
-    "test": "mocha",
+    "test": "npm run build && mocha",
     "build:types": "tsc -b src/tsconfig-amd.json",
     "build:lib": "tsc -b src",
     "build:dist": "browserify lib/js-dot.js > dist/js-dot.js",
     "build:uglify": "uglifyjs dist/js-dot.js -c -m -o dist/js-dot.min.js",
-    "build": "run-s -s build:**"
+    "build": "run-s -s build:**",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
