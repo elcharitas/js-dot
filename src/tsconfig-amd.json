@@ -1,0 +1,8 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "module": "amd",
+        "declaration": true,
+        "outFile": "../dist/js-dot.js"
+    }
+}

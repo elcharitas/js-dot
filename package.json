@@ -1,0 +1,40 @@
+{
+  "name": "js-dot",
+  "version": "1.0.0",
+  "description": "JavaScript dot notation handler",
+  "main": "lib/js-dot.js",
+  "typings": "dist/js-dot",
+  "scripts": {
+    "test": "mocha",
+    "build:types": "tsc -b src/tsconfig-amd.json",
+    "build:lib": "tsc -b src",
+    "build:dist": "browserify lib/js-dot.js > dist/js-dot.js",
+    "build:uglify": "uglifyjs dist/js-dot.js -c -m -o dist/js-dot.min.js",
+    "build": "run-s -s build:**"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elcharitas/js-dot.git"
+  },
+  "keywords": [
+    "js",
+    "dot",
+    "js-dot",
+    "notation",
+    "object",
+    "json"
+  ],
+  "author": "Jonathan Irhodia <https://elcharitas.com.ng>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/elcharitas/js-dot/issues"
+  },
+  "homepage": "https://github.com/elcharitas/js-dot#readme",
+  "devDependencies": {
+    "typescript": "^4.1.0",
+    "browserify": "^17.0.0",
+    "uglify-js": "^3.11.0",
+    "npm-run-all": "^4.1.0",
+    "mocha": "^"
+  }
+}
