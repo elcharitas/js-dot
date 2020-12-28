@@ -1,12 +1,10 @@
 import { dot, glob } from "./utils";
 import { dotloop } from "./loop";
 
+/** dot notation loops */
 export var loop = dotloop
 
-/**
- * Auto Dot notation resolve function
- *
- */
+/** dot notation get */
 export var get = (context: typeof glob, key: string | number, default_value: any = null): any => {
     if (context && key && (typeof key === "string" || typeof key === "number")) {
         let couple: string[] = (new String(key)).split(dot),
@@ -21,14 +19,12 @@ export var get = (context: typeof glob, key: string | number, default_value: any
     }
 }
 
+/** dot notation set */
 export var set = glob.set = (context: typeof glob, name: string, value: any): any => {
     return loop(context, name, (name, isLastName) => {
         if (isLastName) return value
     })
 }
 
-Object.defineProperty(Object.prototype, "dot", {
-    "value": function(key: string, value: any) {
-        return set(this, key, value)
-    }
-})
+/** dual purpose namespaced function */
+export const jsDot = glob.jsDot = (key: string, value: any) => typeof value !== "undefined" ? set(this, key, value): get(this, key)

@@ -1,14 +1,13 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 "use strict";
+var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.set = exports.get = exports.loop = void 0;
+exports.jsDot = exports.set = exports.get = exports.loop = void 0;
 var utils_1 = require("./utils");
 var loop_1 = require("./loop");
+/** dot notation loops */
 exports.loop = loop_1.dotloop;
-/**
- * Auto Dot notation resolve function
- *
- */
+/** dot notation get */
 exports.get = function (context, key, default_value) {
     if (default_value === void 0) { default_value = null; }
     if (context && key && (typeof key === "string" || typeof key === "number")) {
@@ -20,17 +19,15 @@ exports.get = function (context, key, default_value) {
         return holder[lastName] || default_value;
     }
 };
+/** dot notation set */
 exports.set = utils_1.glob.set = function (context, name, value) {
     return exports.loop(context, name, function (name, isLastName) {
         if (isLastName)
             return value;
     });
 };
-Object.defineProperty(Object.prototype, "dot", {
-    "value": function (key, value) {
-        return exports.set(this, key, value);
-    }
-});
+/** dual purpose namespaced function */
+exports.jsDot = utils_1.glob.jsDot = function (key, value) { return typeof value !== "undefined" ? exports.set(_this, key, value) : exports.get(_this, key); };
 
 },{"./loop":2,"./utils":3}],2:[function(require,module,exports){
 "use strict";

@@ -24,7 +24,11 @@
     "object",
     "json"
   ],
-  "author": "Jonathan Irhodia <https://elcharitas.com.ng>",
+  "author": {
+    "name": "Jonathan Irhodia",
+    "email": "jonathanirhodia@gmail.com",
+    "url": "https://elcharitas.com.ng"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/elcharitas/js-dot/issues"

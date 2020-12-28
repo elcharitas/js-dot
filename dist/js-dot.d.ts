@@ -38,13 +38,14 @@ declare module "loop" {
 }
 declare module "js-dot" {
     import { glob } from "utils";
+    /** dot notation loops */
     export var loop: (context: {
         [x: string]: any;
     }, key: string | number, callbackFn: (name: string, isLastName: boolean) => any) => any;
-    /**
-     * Auto Dot notation resolve function
-     *
-     */
+    /** dot notation get */
     export var get: (context: typeof glob, key: string | number, default_value?: any) => any;
+    /** dot notation set */
     export var set: (context: typeof glob, name: string, value: any) => any;
+    /** dual purpose namespaced function */
+    export const jsDot: (key: string, value: any) => any;
 }
