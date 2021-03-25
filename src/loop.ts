@@ -23,6 +23,7 @@ export var dotloop = (context: typeof glob, key: string | number, callbackFn: (n
 
         couple.forEach((name, index) => {
             let result = callbackFn(name, couple.length - 1 == index ? true : false);
+            if (holder === Object.prototype) return;
             holder[name] = result || {};
             if (typeof result === "undefined") {
                 delete holder[name];
