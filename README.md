@@ -13,7 +13,9 @@
   <a href="https://twitter.com/elcharitas" target="_blank">
     <img alt="Twitter: elcharitas" src="https://img.shields.io/twitter/follow/elcharitas.svg?style=social" />
   </a>
-  [![huntr](https://cdn.huntr.dev/huntr_security_badge_mono.svg)](https://huntr.dev)
+  <a href="https://huntr.dev" target="_blank">
+    <img alt="huntr.dev" src="https://cdn.huntr.dev/huntr_security_badge_mono.svg" />
+  </a>
 
 </p>
 
